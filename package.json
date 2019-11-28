@@ -1,0 +1,11 @@
+{
+  "name": "antidote-scraper-lock",
+  "version": "1.0.0",
+  "description": "Antidote sneaker bot scraper mixin for locking execution during monitor/product deletion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Wilson <hello@imsean.me>",
+  "license": "ISC"
+}
