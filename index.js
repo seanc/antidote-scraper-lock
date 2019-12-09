@@ -1,21 +1,23 @@
-module.exports = function createMixin(site = '', duration = 1000) {
+module.exports = function createMixin(site = '') {
   return {
     name: 'scraper-lock',
     events: {
-      "monitors.removed"({
+      "monitors.removing"({
         site: modifiedSite
       }) {
-        site = site || this.metadata.site
-        if (modifiedSite === site) {
+        let _site = site || this.metadata.site
+        if (modifiedSite === _site) {
           this.logger.info("Products removed... locking crawler execution...");
           this.lock = true;
-          setTimeout(
-            function () {
-              this.lock = false;
-              this.logger.info("Unlocked crawler execution");
-            }.bind(this),
-            duration
-          );
+        }
+      },
+      'monitors.removed'({
+        site: modifiedSite
+      }) {
+        let _site = site || this.metadata.site
+        if (modifiedSite === _site) {
+          this.lock = false;
+          this.logger.info("Unlocked crawler execution");
         }
       }
     }
